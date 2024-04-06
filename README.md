@@ -1,3 +1,67 @@
+# Lambda Project
+
+## Author
+Brandon Mizutani
+
+## Version
+1.0.0
+
+## Overview
+This project demonstrates the implementation of Lambda functions triggered by API Gateway and S3 events. The Lambda functions facilitate user authentication via Auth0 and updating of image metadata stored in S3 buckets. 
+
+## Functionality
+- User logs in via Auth0 and receives an email notification.
+- API Gateway triggers a Lambda function which retrieves the relevant user record.
+- Client Lambda function interacts with S3, facilitating file uploads and updates to image metadata.
+- Owner Lambda function is granted access to owner S3 bucket for necessary operations.
+
+## Project Structure
+- **API Gateway** - Facilitates communication between client and serverless functions.
+- **Client Lambda** - Handles user authentication and interaction with S3.
+- **Owner Lambda** - Manages S3 bucket operations for authorized users.
+
+## Usage
+1. Ensure proper setup of AWS S3 bucket permissions following provided directions.
+2. Deploy Lambda functions using AWS Lambda console.
+3. Test Lambda functions using provided test events.
+4. Verify functionality by uploading files to S3 bucket and observing image metadata updates.
+
+## AWS S3 Setup
+Follow the below steps to set up AWS S3 bucket permissions:
+1. Go to AWS console.
+2. Navigate to S3.
+3. Create a new bucket.
+4. Deselect "Block all public access" and acknowledge the settings.
+5. Set permissions with the provided bucket policy from [this link](https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html).
+6. Save changes.
+
+## Lambda Function Configuration
+Follow these steps to configure Lambda functions:
+1. Create a new Lambda function with Node.js 16.x runtime.
+2. Test the function using provided test events.
+3. Modify the function code as required.
+4. Deploy the function.
+
+## Lambda Trigger Configuration
+To configure Lambda triggers:
+1. Click on trigger.
+2. Select S3 trigger.
+3. Choose the Lambda file to be triggered.
+4. Configure the event as necessary.
+
+## Images.json File
+The images.json file contains an array of objects representing uploaded images. Each object follows the structure:
+
+{ "name": "imageName", "type": "jpg", "size": 1460 }
+
+Ensure the file is updated based on new image uploads.
+
+## Additional Information
+Link to images.json with sample image uploads: [images.json](https://bran2miz-lambda.s3.us-west-2.amazonaws.com/images.json)
+
+
+# Notes
+
 user logs in -----> gets email from AuthO
 
 use apiGateway to trigger a lambda - serverless function (aka run this chunk of code hosted in the cloud)
